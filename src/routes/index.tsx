@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { openCookiePreferences } from "@/components/cookie-banner";
 import { useState } from "react";
 import {
   ArrowRight,
@@ -797,8 +798,15 @@ function Footer() {
             </p>
           </div>
           <div className="flex items-center gap-6 text-xs text-muted-foreground">
-            <a href="#" className="transition-colors hover:text-foreground">Privacy</a>
-            <a href="#" className="transition-colors hover:text-foreground">Termini</a>
+            <Link to="/privacy" className="transition-colors hover:text-foreground">Privacy</Link>
+            <Link to="/cookie-policy" className="transition-colors hover:text-foreground">Cookie Policy</Link>
+            <button
+              type="button"
+              onClick={openCookiePreferences}
+              className="transition-colors hover:text-foreground"
+            >
+              Preferenze cookie
+            </button>
             <a href="mailto:hello@onegiftlink.com" className="transition-colors hover:text-foreground">
               hello@onegiftlink.com
             </a>
