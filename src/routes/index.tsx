@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { openCookiePreferences } from "@/components/cookie-banner";
 import { useState } from "react";
 import {
   ArrowRight,
