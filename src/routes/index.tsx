@@ -64,7 +64,7 @@ function Nav() {
           <a href="#faq" className="transition-colors hover:text-foreground">FAQ</a>
         </nav>
         <div className="flex items-center gap-3">
-          
+          <a
             href="https://onegiftlink-app.filippo1tafuri.workers.dev"
             target="_blank"
             rel="noopener noreferrer"
@@ -72,7 +72,7 @@ function Nav() {
           >
             Accedi
           </a>
-          
+          <a
             href="#beta"
             className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-foreground px-4 text-[13px] font-medium text-background transition-all hover:bg-foreground/90 hover:shadow-elegant"
           >
