@@ -580,7 +580,7 @@ function DashboardMockup() {
         {/* Sidebar */}
         <aside className="hidden border-r border-border bg-surface/40 p-3 md:block">
           <div className="flex items-center gap-2 px-2 pb-4 pt-1">
-            <img src="/logo.png" alt="OneGiftLink" className="h-6 w-auto" />
+            <img src="/logo.png" alt="OneGiftLink" className="h-14 w-auto" />
           </div>
           <div className="px-2 pb-1 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
             Menu
@@ -946,7 +946,7 @@ function Footer() {
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
             <div className="flex items-center gap-2">
-              <img src="/logo.png" alt="OneGiftLink" className="h-7 w-auto" />
+              <img src="/logo.png" alt="OneGiftLink" className="h-24 w-auto" />
             </div>
             <p className="mt-3 max-w-md text-sm text-muted-foreground">
               L'infrastruttura di creator gifting per i brand moderni.
