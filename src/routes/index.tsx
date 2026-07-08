@@ -183,8 +183,9 @@ function Hero() {
 
             <p className="pt-1 text-center text-xs text-muted-foreground lg:text-left">
               Dati aggregati da una campagna reale di seeding. I risultati possono variare.
-            </p>
+  </p>
           </div>
+        </div>
 
         {/* Split screen mockup */}
         <div className="mx-auto mt-16 grid max-w-5xl gap-6 md:mt-20 md:grid-cols-2 md:gap-8 animate-fade-in-soft">
