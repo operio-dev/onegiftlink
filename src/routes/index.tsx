@@ -63,8 +63,7 @@ function Nav() {
           <a href="#dashboard" className="transition-colors hover:text-foreground">Dashboard</a>
           <a href="#faq" className="transition-colors hover:text-foreground">FAQ</a>
         </nav>
-        <a
-          <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
           
             href="https://onegiftlink-app.filippo1tafuri.workers.dev"
             target="_blank"
