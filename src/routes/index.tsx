@@ -211,7 +211,7 @@ function BeforeDM() {
   ];
   return (
     <div className="relative">
-      <div className="absolute -top-3 left-4 z-10 inline-flex items-center gap-1.5 rounded-full bg-destructive px-3 py-1 text-[11px] font-medium text-destructive-foreground shadow-elegant">
+     <div className="absolute -top-8 left-4 z-10 inline-flex items-center gap-1.5 rounded-full border border-destructive bg-destructive/10 px-3 py-1 text-[11px] font-semibold text-destructive shadow-sm backdrop-blur-sm">>
         <X className="h-3 w-3" />
         Prima: DM infiniti
       </div>
@@ -263,7 +263,7 @@ function AfterCheckout() {
   const [size, setSize] = useState("M");
   return (
     <div className="relative">
-      <div className="absolute -top-3 left-4 z-10 inline-flex items-center gap-1.5 rounded-full bg-success px-3 py-1 text-[11px] font-medium text-success-foreground shadow-elegant">
+      <div className="absolute -top-8 left-4 z-10 inline-flex items-center gap-1.5 rounded-full border border-success bg-success/10 px-3 py-1 text-[11px] font-semibold text-success shadow-sm backdrop-blur-sm">
         <Check className="h-3 w-3" />
         Dopo: il creator fa tutto in 30 secondi
       </div>
