@@ -185,4 +185,4 @@
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
 }
-.animate-progress { animation: progress 2.2s linear forwards; }
+.animate-progress { animation: progress 4.0s linear forwards; }
