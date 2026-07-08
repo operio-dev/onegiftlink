@@ -175,7 +175,7 @@ function Hero() {
                 <span className="font-medium text-foreground">
                   OneGiftLink gestisce taglie, indirizzi e gli ordini
                 </span>{" "}
-                — in automatico.
+                . In automatico.
               </p>
            </div>
         </div>
