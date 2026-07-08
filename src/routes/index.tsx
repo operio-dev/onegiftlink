@@ -178,11 +178,6 @@ function Hero() {
                 — in automatico.
               </p>
             </div>
-
-            <p className="pt-1 text-xs text-muted-foreground">
-              Dati illustrativi di una campagna dimostrativa. I risultati variano.
-            </p>
-          </div>
         </div>
 
         {/* Split screen mockup */}
