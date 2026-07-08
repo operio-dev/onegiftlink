@@ -81,9 +81,13 @@ function Hero() {
       <div className="absolute inset-0 grid-bg opacity-60 [mask-image:radial-gradient(ellipse_at_top,black_20%,transparent_70%)]" />
       <div className="container-page relative pt-20 pb-24 md:pt-28 md:pb-32">
         <div className="mx-auto max-w-3xl text-center animate-fade-up">
-          <SectionEyebrow>Private beta · Q3 2026</SectionEyebrow>
+          <SectionEyebrow>Pensato per growth marketer e founder</SectionEyebrow>
           <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-foreground md:text-6xl md:leading-[1.05]">
-            Basta perdere ore a gestire i regali ai creator.
+            Basta perdere ore a gestire i{" "}
+            <span className="bg-gradient-to-r from-primary to-[oklch(0.65_0.2_255)] bg-clip-text text-transparent">
+              regali ai creator
+            </span>
+            .
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-lg leading-relaxed text-muted-foreground">
             Trasforma ogni campagna di influencer gifting in un semplice checkout. Mandi un link privato,
