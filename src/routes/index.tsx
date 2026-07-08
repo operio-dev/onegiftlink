@@ -280,18 +280,104 @@ function AfterCheckout() {
 }
 
 function HoodieIllustration({ color }: { color: number }) {
-  const fill = color === 0 ? "#f5f5f4" : color === 1 ? "#171717" : "oklch(0.55 0.22 260)";
-  const stroke = color === 0 ? "#a3a3a3" : "rgba(255,255,255,0.15)";
+  const fill = color === 0 ? "#f4f4f2" : color === 1 ? "#1a1a1a" : "oklch(0.5 0.2 260)";
+  const shadow =
+    color === 0 ? "#d4d4d0" : color === 1 ? "#000000" : "oklch(0.38 0.18 260)";
+  const highlight =
+    color === 0 ? "#ffffff" : color === 1 ? "#2e2e2e" : "oklch(0.62 0.2 260)";
+  const stitch =
+    color === 0 ? "rgba(0,0,0,0.18)" : "rgba(255,255,255,0.22)";
+  const cordColor = color === 0 ? "#b8b8b4" : "#ececea";
+
   return (
-    <svg viewBox="0 0 200 160" className="h-32 w-32 drop-shadow-lg transition-all duration-500">
+    <svg
+      viewBox="0 0 220 200"
+      className="h-40 w-40 drop-shadow-xl transition-all duration-500"
+      aria-hidden
+    >
+      <defs>
+        <linearGradient id={`hoodieGrad-${color}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={highlight} />
+          <stop offset="55%" stopColor={fill} />
+          <stop offset="100%" stopColor={shadow} />
+        </linearGradient>
+        <linearGradient id={`hoodieSleeveL-${color}`} x1="1" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={fill} />
+          <stop offset="100%" stopColor={shadow} />
+        </linearGradient>
+        <linearGradient id={`hoodieSleeveR-${color}`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor={fill} />
+          <stop offset="100%" stopColor={shadow} />
+        </linearGradient>
+      </defs>
+
+      {/* Left sleeve */}
       <path
-        d="M60 40 Q60 20 100 20 Q140 20 140 40 L165 55 L170 95 L150 100 L150 145 L50 145 L50 100 L30 95 L35 55 Z"
-        fill={fill}
-        stroke={stroke}
-        strokeWidth="1.5"
+        d="M55 70 Q30 82 22 130 Q20 150 30 170 L60 175 Q58 150 62 130 L70 95 Z"
+        fill={`url(#hoodieSleeveL-${color})`}
       />
-      <path d="M75 25 Q100 45 125 25 L125 55 Q100 70 75 55 Z" fill={fill} stroke={stroke} strokeWidth="1.5" />
-      <line x1="100" y1="45" x2="100" y2="90" stroke={stroke} strokeWidth="1" />
+      {/* Right sleeve */}
+      <path
+        d="M165 70 Q190 82 198 130 Q200 150 190 170 L160 175 Q162 150 158 130 L150 95 Z"
+        fill={`url(#hoodieSleeveR-${color})`}
+      />
+      {/* Cuffs */}
+      <rect x="28" y="165" width="34" height="10" rx="3" fill={shadow} />
+      <rect x="158" y="165" width="34" height="10" rx="3" fill={shadow} />
+      <line x1="30" y1="170" x2="60" y2="170" stroke={highlight} strokeOpacity="0.35" strokeWidth="0.8" />
+      <line x1="160" y1="170" x2="190" y2="170" stroke={highlight} strokeOpacity="0.35" strokeWidth="0.8" />
+
+      {/* Body */}
+      <path
+        d="M60 70 Q70 55 85 50 L135 50 Q150 55 160 70 L168 100 L162 175 Q140 182 110 182 Q80 182 58 175 L52 100 Z"
+        fill={`url(#hoodieGrad-${color})`}
+      />
+
+      {/* Hem */}
+      <path
+        d="M58 175 Q110 190 162 175 L162 182 Q110 197 58 182 Z"
+        fill={shadow}
+      />
+
+      {/* Kangaroo pocket */}
+      <path
+        d="M78 118 Q110 128 142 118 L138 158 Q110 164 82 158 Z"
+        fill={shadow}
+        fillOpacity="0.55"
+      />
+      <line x1="78" y1="118" x2="82" y2="158" stroke={stitch} strokeWidth="0.6" strokeDasharray="1.5 1.5" />
+      <line x1="142" y1="118" x2="138" y2="158" stroke={stitch} strokeWidth="0.6" strokeDasharray="1.5 1.5" />
+      <line x1="78" y1="118" x2="142" y2="118" stroke={stitch} strokeWidth="0.6" strokeDasharray="1.5 1.5" />
+
+      {/* Hood back */}
+      <path
+        d="M78 52 Q88 22 110 20 Q132 22 142 52 Q132 62 110 62 Q88 62 78 52 Z"
+        fill={shadow}
+      />
+      {/* Hood front opening */}
+      <path
+        d="M85 50 Q95 68 110 72 Q125 68 135 50 Q125 60 110 62 Q95 60 85 50 Z"
+        fill={highlight}
+        fillOpacity="0.15"
+      />
+      {/* Neck ribbing */}
+      <path
+        d="M92 60 Q110 70 128 60 L126 72 Q110 80 94 72 Z"
+        fill={shadow}
+      />
+
+      {/* Drawstrings */}
+      <path d="M104 70 Q102 90 100 108" stroke={cordColor} strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      <path d="M116 70 Q118 92 120 110" stroke={cordColor} strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      <circle cx="100" cy="110" r="2.2" fill={cordColor} />
+      <circle cx="120" cy="112" r="2.2" fill={cordColor} />
+
+      {/* Subtle center seam */}
+      <line x1="110" y1="72" x2="110" y2="118" stroke={stitch} strokeWidth="0.5" strokeDasharray="1 2" />
+
+      {/* Shoulder highlights */}
+      <path d="M70 62 Q90 55 110 55" stroke={highlight} strokeOpacity="0.25" strokeWidth="1.2" fill="none" />
+      <path d="M150 62 Q130 55 110 55" stroke={highlight} strokeOpacity="0.25" strokeWidth="1.2" fill="none" />
     </svg>
   );
 }
