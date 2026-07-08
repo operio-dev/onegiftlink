@@ -181,3 +181,8 @@
 .animate-fade-up { animation: fade-up 0.7s cubic-bezier(0.22,1,0.36,1) both; }
 .animate-fade-in-soft { animation: fade-in-soft 0.9s ease-out both; }
 .animate-pulse-dot { animation: pulse-dot 1.8s ease-in-out infinite; }
+@keyframes progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.animate-progress { animation: progress 2.2s linear forwards; }
