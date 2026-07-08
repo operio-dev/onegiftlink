@@ -76,45 +76,113 @@ function Nav() {
 /* --------------------------------- Hero --------------------------------- */
 
 function Hero() {
+  const funnel = [
+    { value: "500", label: "creator invitati", w: "w-full" },
+    { value: "461", label: "hanno aperto il link", w: "w-[92%]" },
+    { value: "434", label: "taglia e indirizzo completati", w: "w-[87%]" },
+    { value: "387", label: "hanno postato", w: "w-[77%]" },
+  ];
+  const kpis = [
+    { value: "14h", label: "risparmiate a settimana" },
+    { value: "94%", label: "indirizzi completi" },
+    { value: "0", label: "righe di Excel" },
+  ];
   return (
     <section id="top" className="relative overflow-hidden border-b border-border">
       <div className="absolute inset-0 grid-bg opacity-60 [mask-image:radial-gradient(ellipse_at_top,black_20%,transparent_70%)]" />
       <div className="container-page relative pt-20 pb-24 md:pt-28 md:pb-32">
-        <div className="mx-auto max-w-3xl text-center animate-fade-up">
-          <SectionEyebrow>Pensato per Growth Marketers e Founders</SectionEyebrow>
-          <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-foreground md:text-6xl md:leading-[1.05]">
-            Basta perdere ore a gestire i{" "}
-            <span className="bg-gradient-to-r from-primary to-[oklch(0.65_0.2_255)] bg-clip-text text-transparent">
-              regali ai creator
-            </span>
-            .
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-balance text-lg leading-relaxed text-muted-foreground">
-            Trasforma ogni campagna di influencer gifting in un semplice checkout. Mandi un link privato,
-            il creator sceglie prodotto, taglia e indirizzo di spedizione da solo. Niente più DM persi su
-            Instagram. Niente più fogli Excel.
-          </p>
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
 
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="#beta"
-              className="group inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground shadow-glow transition-all hover:brightness-110"
-            >
-              Richiedi l'accesso anticipato
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </a>
-            <a
-              href="#come-funziona"
-              className="inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card px-5 text-sm font-medium text-foreground transition-colors hover:bg-surface"
-            >
-              <Play className="h-3.5 w-3.5" />
-              Scopri come funziona
-            </a>
+          {/* LEFT: testo */}
+          <div className="animate-fade-up text-center lg:text-left">
+            <SectionEyebrow>Pensato per Growth Marketers e Founders</SectionEyebrow>
+            <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-foreground md:text-6xl md:leading-[1.05]">
+              Basta perdere ore a gestire i{" "}
+              <span className="bg-gradient-to-r from-primary to-[oklch(0.65_0.2_255)] bg-clip-text text-transparent">
+                regali ai creator
+              </span>
+              .
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-balance text-lg leading-relaxed text-muted-foreground lg:mx-0">
+              Trasforma ogni campagna di influencer gifting in un semplice checkout. Mandi un link privato,
+              il creator sceglie prodotto, taglia e indirizzo di spedizione da solo. Niente più DM persi su
+              Instagram. Niente più fogli Excel.
+            </p>
+
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
+              <a
+                href="#beta"
+                className="group inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-medium text-primary-foreground shadow-glow transition-all hover:brightness-110"
+              >
+                Richiedi l'accesso anticipato
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </a>
+              <a
+                href="#come-funziona"
+                className="inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card px-5 text-sm font-medium text-foreground transition-colors hover:bg-surface"
+              >
+                <Play className="h-3.5 w-3.5" />
+                Scopri come funziona
+              </a>
+            </div>
+
+            <p className="mt-5 text-xs text-muted-foreground">
+              Gratis durante la beta · Pronto per Shopify · Attivo in un giorno
+            </p>
           </div>
 
-          <p className="mt-5 text-xs text-muted-foreground">
-            Gratis durante la beta · Pronto per Shopify · Attivo in un giorno
-          </p>
+          {/* RIGHT: imbuto + KPI */}
+          <div className="animate-fade-in-soft space-y-3">
+            {funnel.map((f, i) => (
+              <div key={i} className="flex justify-end">
+                <div
+                  className={`${f.w} rounded-2xl bg-primary/10 px-6 py-4 transition-all`}
+                >
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+                      {f.value}
+                    </span>
+                    <span className="text-sm font-medium text-muted-foreground">
+                      {f.label}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            <div className="grid grid-cols-3 gap-3 pt-1">
+              {kpis.map((k, i) => (
+                <div
+                  key={i}
+                  className="rounded-2xl bg-primary px-4 py-5 text-primary-foreground"
+                >
+                  <div className="text-2xl font-bold tracking-tight md:text-3xl">
+                    {k.value}
+                  </div>
+                  <div className="mt-1 text-xs font-medium leading-tight opacity-90">
+                    {k.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex items-start gap-3 rounded-2xl border border-border bg-card px-4 py-4">
+              <div className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-primary/10">
+                <Gift className="h-4 w-4 text-primary" />
+              </div>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Una campagna reale di seeding. Il tuo team cura le relazioni,{" "}
+                <span className="font-medium text-foreground">
+                  OneGiftLink gestisce taglie, indirizzi e gli ordini
+                </span>{" "}
+                — in automatico.
+              </p>
+            </div>
+
+            <p className="pt-1 text-xs text-muted-foreground">
+              Dati illustrativi di una campagna dimostrativa. I risultati variano.
+            </p>
+          </div>
         </div>
 
         {/* Split screen mockup */}
