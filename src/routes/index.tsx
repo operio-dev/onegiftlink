@@ -471,7 +471,7 @@ function ComeFunziona() {
 function PerchePlatform() {
   const cards = [
     { icon: Sparkles, title: "Matching assistito dall'AI", desc: "Prodotto, catalogo e indirizzo vengono validati e abbinati in automatico. Le regole si adattano al tuo catalogo e alla logica della campagna. Non un generico form builder." },
-    { icon: Truck, title: "Dati pronti per la spedizione", desc: "Gli ordini escono già puliti, con le taglie giuste e gli indirizzi validati. Pronti per il tuo magazzino, senza export manuali né copia-incolla.", 
+    { icon: Truck, title: "Dati pronti per la spedizione", desc: "Gli ordini escono già puliti, con le taglie giuste e gli indirizzi validati. Pronti per il tuo magazzino, senza export manuali né copia-incolla."}, 
     { icon: ShieldCheck, title: "Privacy by design", desc: "I dati del creator sono cifrati e condivisi solo con il tuo brand per la spedizione. Indirizzi validati e richieste di cancellazione onorate all'istante. Conforme al GDPR." },
   ];
   return (
