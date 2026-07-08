@@ -571,7 +571,7 @@ function ComeFunziona() {
       ([entry]) => {
         if (entry.isIntersecting) {
           if (!timer) {
-            timer = setInterval(() => setActive((a) => (a + 1) % 3), 2200);
+            timer = setInterval(() => setActive((a) => (a + 1) % 3), 4000);
           }
         } else if (timer) {
           clearInterval(timer);
