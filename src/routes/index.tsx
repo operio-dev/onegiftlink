@@ -183,7 +183,7 @@ function Hero() {
 
             <p className="pt-1 text-center text-xs text-muted-foreground lg:text-left">
               Dati aggregati da una campagna reale di seeding. I risultati possono variare.
-  </p>
+            </p>
           </div>
         </div>
 
@@ -211,7 +211,7 @@ function BeforeDM() {
   ];
   return (
     <div className="relative">
-     <div className="absolute -top-8 left-4 z-10 inline-flex items-center gap-1.5 rounded-full border border-destructive bg-destructive/10 px-3 py-1 text-[11px] font-semibold text-destructive shadow-sm backdrop-blur-sm">>
+      <div className="absolute -top-8 left-4 z-10 inline-flex items-center gap-1.5 rounded-full border border-destructive bg-destructive/10 px-3 py-1 text-[11px] font-semibold text-destructive shadow-sm backdrop-blur-sm">
         <X className="h-3 w-3" />
         Prima: DM infiniti
       </div>
