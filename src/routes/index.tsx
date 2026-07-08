@@ -53,7 +53,7 @@ function Nav() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="container-page flex h-16 items-center justify-between">
         <a href="#top" className="flex items-center gap-2">
-          <img src="/logo.png" alt="OneGiftLink" className="h-8 w-auto" />
+          <img src="/logo.png" alt="OneGiftLink" className="h-18 w-auto" />
         </a>
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
           <a href="#problema" className="transition-colors hover:text-foreground">Il problema</a>
