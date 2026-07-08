@@ -26,6 +26,9 @@ import {
   Pill,
   Home,
   Users,
+  LayoutGrid,
+  Megaphone,
+  Settings as SettingsIcon,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
