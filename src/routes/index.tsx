@@ -177,7 +177,8 @@ function Hero() {
                 </span>{" "}
                 — in automatico.
               </p>
-            </div>
+           </div>
+        </div>
         </div>
 
         {/* Split screen mockup */}
