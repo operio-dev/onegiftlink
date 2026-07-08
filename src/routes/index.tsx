@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { openCookiePreferences } from "@/components/cookie-banner";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   ArrowRight,
   Check,
@@ -28,6 +28,8 @@ import {
   Users,
   LayoutGrid,
   Megaphone,
+  BellRing,
+  Star,
   Settings as SettingsIcon,
 } from "lucide-react";
 
@@ -450,9 +452,21 @@ function HoodieIllustration({ color }: { color: number }) {
 
 function ProblemaSection() {
   const cards = [
-    { icon: MessageSquareOff, title: "100+ DM a campagna", desc: "Ogni campagna inizia con le stesse conversazioni ripetitive, sparse tra le inbox del team." },
-    { icon: FileSpreadsheet, title: "Caos da Excel", desc: "Copia-incolla a mano tra DM, Notion e Shopify: errori, indirizzi sbagliati e ritardi." },
-    { icon: UserMinus, title: "Creator persi per strada", desc: "Ogni passaggio in più fa sparire un altro creator prima ancora che riceva il prodotto." },
+    {
+      icon: MessageSquareOff,
+      title: "Ore perse nei DM",
+      desc: "Ogni regalo parte con la stessa trafila: taglia? colore? indirizzo? Cento conversazioni ripetitive sparse tra le inbox del team, ogni settimana.",
+    },
+    {
+      icon: FileSpreadsheet,
+      title: "Dati che si perdono",
+      desc: "Copia-incolla a mano tra DM, Excel e magazzino. Indirizzi sbagliati, taglie confuse, spedizioni che partono male. Ogni errore è un prodotto buttato.",
+    },
+    {
+      icon: UserMinus,
+      title: "Creator che spariscono",
+      desc: "Metà dei creator si perde tra un DM e l'altro, e chi riceve il regalo spesso non posta mai. Senza follow-up e senza sapere di chi fidarti, stai regalando alla cieca.",
+    },
   ];
   return (
     <section id="problema" className="border-b border-border bg-surface/50">
@@ -463,8 +477,9 @@ function ProblemaSection() {
             Il creator gifting funziona. Il processo no.
           </h2>
           <p className="mt-4 text-balance text-muted-foreground">
-            Ogni mese i brand mandano centinaia di prodotti gratis. Ma raccogliere indirizzi, taglie
-            e preferenze via Instagram crea un lavoro manuale enorme e inutile.
+            Mandi decine di prodotti al mese, ma il lavoro vero non è spedirli: è rincorrere dati nei
+            DM, evitare errori e capire quali creator ricambiano davvero. OneGiftLink toglie tutto
+            questo di mezzo.
           </p>
         </div>
         <div className="mx-auto mt-14 grid max-w-5xl gap-4 md:grid-cols-3">
@@ -481,6 +496,39 @@ function ProblemaSection() {
             </div>
           ))}
         </div>
+
+        {/* Riga value-prop: cosa aggiunge OneGiftLink oltre alla raccolta dati */}
+        <div className="mx-auto mt-4 grid max-w-5xl gap-4 sm:grid-cols-2">
+          <div className="flex items-start gap-4 rounded-2xl border border-primary/20 bg-primary/[0.04] p-6">
+            <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
+              <BellRing className="h-5 w-5" />
+            </div>
+            <div>
+              <h3 className="text-[17px] font-semibold tracking-tight">Follow-up automatici</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Chi non apre il link o non posta riceve un promemoria garbato, in automatico. Più
+                creator arrivano fino in fondo, più contenuti ottieni dallo stesso budget.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4 rounded-2xl border border-primary/20 bg-primary/[0.04] p-6">
+            <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-primary/10 text-primary">
+              <Star className="h-5 w-5" />
+            </div>
+            <div>
+              <h3 className="text-[17px] font-semibold tracking-tight">
+                Reputazione dei creator
+                <span className="ml-2 align-middle text-[10px] font-medium uppercase tracking-wide text-primary/70">
+                  in arrivo
+                </span>
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Ogni campagna costruisce uno storico condiviso: chi completa, chi posta, chi ricambia.
+                Come le recensioni per i negozi, ma per i creator — così sai a chi vale la pena spedire.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -490,40 +538,216 @@ function ProblemaSection() {
 
 function ComeFunziona() {
   const steps = [
-    { icon: Link2, title: "Genera un link di gifting privato", desc: "Scegli prodotti, quantità e regole. Esce un checkout brandizzato, senza login per il creator." },
-    { icon: Send, title: "Mandalo direttamente ai creator", desc: "Incolla il link nel DM di Instagram, in email o su WhatsApp. Nessun account richiesto." },
-    { icon: PackageCheck, title: "Il creator sceglie e conferma", desc: "Seleziona taglia, colore e indirizzo validato. I dati arrivano puliti e pronti per la spedizione." },
+    {
+      icon: Link2,
+      title: "Genera un link privato",
+      desc: "Scegli prodotti, quantità e regole. Esce un checkout brandizzato, senza login per il creator.",
+    },
+    {
+      icon: Send,
+      title: "Mandalo ai creator",
+      desc: "Incolla il link nel DM di Instagram, in email o su WhatsApp. Nessun account richiesto.",
+    },
+    {
+      icon: PackageCheck,
+      title: "Il creator conferma",
+      desc: "Sceglie taglia, colore e indirizzo validato. I dati arrivano puliti e pronti da spedire.",
+    },
   ];
+
+  const [active, setActive] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  // Avanza gli step in loop quando la sezione è visibile
+  useEffect(() => {
+    let timer: ReturnType<typeof setInterval> | null = null;
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (!timer) {
+            timer = setInterval(() => setActive((a) => (a + 1) % 3), 2200);
+          }
+        } else if (timer) {
+          clearInterval(timer);
+          timer = null;
+        }
+      },
+      { threshold: 0.4 },
+    );
+    obs.observe(el);
+    return () => {
+      if (timer) clearInterval(timer);
+      obs.disconnect();
+    };
+  }, []);
+
   return (
     <section id="come-funziona" className="border-b border-border">
-      <div className="container-page py-24 md:py-32">
+      <div ref={sectionRef} className="container-page py-24 md:py-32">
         <div className="mx-auto max-w-2xl text-center">
           <SectionEyebrow>Come funziona</SectionEyebrow>
           <h2 className="mt-5 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
             Dal DM al prodotto spedito, in pochi secondi.
           </h2>
         </div>
-        <div className="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-3">
-          {steps.map((s, i) => (
-            <div
-              key={s.title}
-              className="group relative rounded-2xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:shadow-elegant"
-            >
-              <div className="flex items-center justify-between">
-                <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary">
-                  <s.icon className="h-5 w-5" />
-                </div>
-                <span className="text-xs font-medium tabular-nums text-muted-foreground">
-                  0{i + 1}
-                </span>
+
+        <div className="mx-auto mt-16 grid max-w-5xl items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          {/* Sinistra: step cliccabili con progressione */}
+          <div className="space-y-3">
+            {steps.map((s, i) => {
+              const isActive = i === active;
+              return (
+                <button
+                  key={s.title}
+                  onClick={() => setActive(i)}
+                  className={`flex w-full items-start gap-4 rounded-2xl border p-5 text-left transition-all duration-500 ${
+                    isActive
+                      ? "border-primary/30 bg-primary/[0.05] shadow-elegant"
+                      : "border-border bg-card hover:border-border-strong"
+                  }`}
+                >
+                  <div
+                    className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl transition-all duration-500 ${
+                      isActive
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-primary/10 text-primary"
+                    }`}
+                  >
+                    <s.icon className="h-5 w-5" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-medium tabular-nums text-muted-foreground">
+                        0{i + 1}
+                      </span>
+                      <h3 className="text-[17px] font-semibold tracking-tight">{s.title}</h3>
+                    </div>
+                    <p
+                      className={`mt-1 text-sm leading-relaxed text-muted-foreground transition-all duration-500 ${
+                        isActive ? "opacity-100" : "opacity-70"
+                      }`}
+                    >
+                      {s.desc}
+                    </p>
+                    {/* barra di avanzamento sotto lo step attivo */}
+                    <div
+                      className={`mt-3 h-0.5 overflow-hidden rounded-full bg-border transition-all duration-300 ${
+                        isActive ? "opacity-100" : "opacity-0"
+                      }`}
+                    >
+                      <div
+                        key={active}
+                        className={isActive ? "h-full w-full origin-left bg-primary animate-progress" : "h-full w-0 bg-primary"}
+                      />
+                    </div>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Destra: mockup che evolve in base allo step attivo */}
+          <div className="relative">
+            <div className="mx-auto w-full max-w-sm rounded-3xl border border-border bg-card p-3 shadow-elegant">
+              <div className="rounded-2xl bg-surface/60 p-5">
+                <StepVisual step={active} />
               </div>
-              <h3 className="mt-6 text-[17px] font-semibold tracking-tight">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.desc}</p>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
+  );
+}
+
+/* Mockup dinamico dei 3 step */
+function StepVisual({ step }: { step: number }) {
+  if (step === 0) {
+    // Step 1: generazione link
+    return (
+      <div className="space-y-4 animate-fade-in-soft" key="s0">
+        <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+          <Link2 className="h-3.5 w-3.5 text-primary" /> Link generato
+        </div>
+        <div className="rounded-xl border border-border bg-card p-4">
+          <div className="text-[11px] uppercase tracking-wide text-muted-foreground">Campagna</div>
+          <div className="mt-1 text-sm font-semibold">Summer Creator Seeding</div>
+          <div className="mt-3 flex items-center gap-2 rounded-lg bg-surface px-3 py-2">
+            <span className="truncate text-xs text-muted-foreground">onegiftlink.com/g/9fX2a</span>
+            <span className="ml-auto rounded-md bg-primary px-2 py-1 text-[10px] font-medium text-primary-foreground">
+              Copia
+            </span>
+          </div>
+        </div>
+        <div className="flex gap-1.5">
+          <span className="rounded-md bg-primary/10 px-2 py-1 text-[10px] font-medium text-primary">Felpa</span>
+          <span className="rounded-md bg-primary/10 px-2 py-1 text-[10px] font-medium text-primary">3 colori</span>
+          <span className="rounded-md bg-primary/10 px-2 py-1 text-[10px] font-medium text-primary">XS–L</span>
+        </div>
+      </div>
+    );
+  }
+  if (step === 1) {
+    // Step 2: DM con il link
+    return (
+      <div className="space-y-3 animate-fade-in-soft" key="s1">
+        <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
+          <Send className="h-3.5 w-3.5 text-primary" /> Inviato in DM
+        </div>
+        <div className="rounded-xl border border-border bg-card p-3">
+          <div className="mb-2 flex items-center gap-2 border-b border-border pb-2">
+            <div className="h-6 w-6 rounded-full bg-gradient-to-br from-primary to-[oklch(0.65_0.2_255)]" />
+            <span className="text-xs font-medium">@sophie.creates</span>
+            <span className="ml-auto text-[10px] text-muted-foreground">Instagram</span>
+          </div>
+          <div className="flex justify-end">
+            <div className="max-w-[85%] rounded-2xl rounded-br-sm bg-foreground px-3 py-2 text-[11px] text-background">
+              Ciao! Un regalo per te 🎁 scegli qui: onegiftlink.com/g/9fX2a
+            </div>
+          </div>
+          <div className="mt-2 flex justify-start">
+            <div className="rounded-2xl rounded-bl-sm bg-surface px-3 py-2 text-[11px]">
+              Che bello, grazie! 😍
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  // Step 3: form compilato + conferma
+  return (
+    <div className="space-y-3 animate-fade-in-soft" key="s2">
+      <div className="flex items-center gap-2 text-xs font-medium text-primary">
+        <PackageCheck className="h-3.5 w-3.5" /> Confermato
+      </div>
+      <div className="rounded-xl border border-border bg-card p-4">
+        <div className="text-center text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+          Un regalo da
+        </div>
+        <div className="text-center text-sm font-bold tracking-tight">MAISON NOIR</div>
+        <div className="mt-3 grid grid-cols-4 gap-1.5">
+          {["XS", "S", "M", "L"].map((t) => (
+            <div
+              key={t}
+              className={`rounded-md py-1.5 text-center text-[11px] font-medium ${
+                t === "M" ? "bg-foreground text-background" : "bg-surface text-muted-foreground"
+              }`}
+            >
+              {t}
+            </div>
+          ))}
+        </div>
+        <div className="mt-3 flex items-center gap-2 rounded-lg bg-surface px-3 py-2">
+          <MapPin className="h-3 w-3 text-primary" />
+          <span className="text-[11px] text-muted-foreground">Via Torino 45, Milano ✓</span>
+        </div>
+        <div className="mt-3 rounded-lg bg-primary py-2 text-center text-[11px] font-medium text-primary-foreground">
+          Ricevi il tuo regalo 🎁
+        </div>
+      </div>
+    </div>
   );
 }
 
