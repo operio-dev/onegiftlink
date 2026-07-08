@@ -64,12 +64,23 @@ function Nav() {
           <a href="#faq" className="transition-colors hover:text-foreground">FAQ</a>
         </nav>
         <a
-          href="#beta"
-          className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-foreground px-4 text-[13px] font-medium text-background transition-all hover:bg-foreground/90 hover:shadow-elegant"
-        >
-          Richiedi l'accesso
-          <ArrowRight className="h-3.5 w-3.5" />
-        </a>
+          <div className="flex items-center gap-3">
+          
+            href="https://onegiftlink-app.filippo1tafuri.workers.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[13px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Accedi
+          </a>
+          
+            href="#beta"
+            className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-foreground px-4 text-[13px] font-medium text-background transition-all hover:bg-foreground/90 hover:shadow-elegant"
+          >
+            Richiedi l'accesso
+            <ArrowRight className="h-3.5 w-3.5" />
+          </a>
+        </div>
       </div>
     </header>
   );
