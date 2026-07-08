@@ -946,7 +946,7 @@ function Footer() {
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
             <div className="flex items-center gap-2">
-              <img src="/logo.png" alt="OneGiftLink" className="h-24 w-auto" />
+              <img src="/logo.png" alt="OneGiftLink" className="h-30 w-auto" />
             </div>
             <p className="mt-3 max-w-md text-sm text-muted-foreground">
               L'infrastruttura di creator gifting per i brand moderni.
