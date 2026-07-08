@@ -53,10 +53,7 @@ function Nav() {
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
       <div className="container-page flex h-16 items-center justify-between">
         <a href="#top" className="flex items-center gap-2">
-          <div className="grid h-8 w-8 place-items-center rounded-lg bg-foreground text-background">
-            <Gift className="h-4 w-4" />
-          </div>
-          <span className="text-[15px] font-semibold tracking-tight">OneGiftLink</span>
+          <img src="/logo.png" alt="OneGiftLink" className="h-8 w-auto" />
         </a>
         <nav className="hidden items-center gap-8 text-sm text-muted-foreground md:flex">
           <a href="#problema" className="transition-colors hover:text-foreground">Il problema</a>
@@ -583,10 +580,7 @@ function DashboardMockup() {
         {/* Sidebar */}
         <aside className="hidden border-r border-border bg-surface/40 p-3 md:block">
           <div className="flex items-center gap-2 px-2 pb-4 pt-1">
-            <div className="grid h-7 w-7 place-items-center rounded-md bg-foreground text-background">
-              <Gift className="h-3.5 w-3.5" />
-            </div>
-            <div className="text-[13px] font-semibold tracking-tight">OneGiftLink</div>
+            <img src="/logo.png" alt="OneGiftLink" className="h-6 w-auto" />
           </div>
           <div className="px-2 pb-1 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
             Menu
@@ -952,10 +946,7 @@ function Footer() {
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div>
             <div className="flex items-center gap-2">
-              <div className="grid h-7 w-7 place-items-center rounded-lg bg-foreground text-background">
-                <Gift className="h-3.5 w-3.5" />
-              </div>
-              <span className="text-sm font-semibold tracking-tight">OneGiftLink</span>
+              <img src="/logo.png" alt="OneGiftLink" className="h-7 w-auto" />
             </div>
             <p className="mt-3 max-w-md text-sm text-muted-foreground">
               L'infrastruttura di creator gifting per i brand moderni.
