@@ -557,6 +557,14 @@ function DashboardMockup() {
       purple: "bg-[oklch(0.55_0.22_290)]/10 text-[oklch(0.45_0.22_290)] border-[oklch(0.55_0.22_290)]/20",
     })[c] || "";
 
+  const navItems = [
+    { icon: LayoutGrid, label: "Panoramica", active: true, hint: "Overview" },
+    { icon: Megaphone, label: "Campagne", active: false, hint: "Seeding" },
+    { icon: Users, label: "Creator", active: false, badge: "Score" },
+    { icon: Truck, label: "Spedizioni", active: false },
+    { icon: SettingsIcon, label: "Impostazioni", active: false },
+  ];
+
   return (
     <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-elegant">
       {/* Window chrome */}
@@ -567,81 +575,144 @@ function DashboardMockup() {
           <div className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
         </div>
         <div className="ml-4 rounded-md border border-border bg-background px-3 py-1 text-[11px] text-muted-foreground">
-          app.onegiftlink.com / campagne / summer-seeding
+          app.onegiftlink.com / panoramica
         </div>
       </div>
 
-      {/* Campaign header */}
-      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 border-b border-border px-6 py-5 sm:flex sm:items-center sm:justify-between">
-        <div className="min-w-0">
-          <div className="flex items-center gap-2.5">
-            <h3 className="truncate text-[17px] font-semibold tracking-tight">Summer Creator Seeding</h3>
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-success/20 bg-success/10 px-2 py-0.5 text-[11px] font-medium text-success">
-              <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-success" />
-              Live
-            </span>
+      <div className="grid md:grid-cols-[220px_minmax(0,1fr)]">
+        {/* Sidebar */}
+        <aside className="hidden border-r border-border bg-surface/40 p-3 md:block">
+          <div className="flex items-center gap-2 px-2 pb-4 pt-1">
+            <div className="grid h-7 w-7 place-items-center rounded-md bg-foreground text-background">
+              <Gift className="h-3.5 w-3.5" />
+            </div>
+            <div className="text-[13px] font-semibold tracking-tight">OneGiftLink</div>
           </div>
-          <p className="mt-1 text-xs text-muted-foreground">Beauty · 250 inviti · Attiva dal 12 giugno</p>
-        </div>
-        <button className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-2 text-xs font-medium transition-colors hover:bg-surface">
-          <Copy className="h-3.5 w-3.5" />
-          Copia link regalo
-        </button>
-      </div>
-
-      {/* Stats */}
-      <div className="grid gap-px border-b border-border bg-border sm:grid-cols-3">
-        <StatCard label="Inviti mandati" value="250" sub="Ultimi 30 giorni" />
-        <StatCard label="Regali riscattati" value="187" sub="74,8% di riscatto" subColor="success" />
-        <StatCard label="Completamento indirizzo" value="94%" sub="+12% vs. manuale" subColor="success" />
-      </div>
-
-      {/* Table */}
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-[720px] text-sm">
-          <thead>
-            <tr className="border-b border-border bg-surface/50 text-[11px] uppercase tracking-wider text-muted-foreground">
-              <th className="px-6 py-3 text-left font-medium">Creator</th>
-              <th className="px-6 py-3 text-left font-medium">Prodotto</th>
-              <th className="px-6 py-3 text-left font-medium">Taglia</th>
-              <th className="px-6 py-3 text-left font-medium">Stato</th>
-              <th className="px-6 py-3 text-left font-medium">Postato</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((r, i) => (
-              <tr
-                key={i}
-                className="border-b border-border last:border-0 transition-colors hover:bg-surface/60"
+          <div className="px-2 pb-1 text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+            Menu
+          </div>
+          <nav className="mt-1 space-y-0.5">
+            {navItems.map((n) => (
+              <div
+                key={n.label}
+                className={`flex items-center gap-2.5 rounded-lg px-2.5 py-2 text-[13px] transition-colors ${
+                  n.active
+                    ? "bg-primary/10 text-primary font-medium"
+                    : "text-muted-foreground hover:bg-surface hover:text-foreground"
+                }`}
               >
-                <td className="px-6 py-3.5">
-                  <div className="flex items-center gap-2.5">
-                    <div className="grid h-7 w-7 place-items-center rounded-full bg-gradient-to-br from-primary/60 to-primary text-[11px] font-semibold text-primary-foreground">
-                      {r.name[0]}
-                    </div>
-                    <div>
-                      <div className="text-[13px] font-medium leading-tight">{r.name}</div>
-                      <div className="text-[11px] text-muted-foreground">{r.handle}</div>
-                    </div>
-                  </div>
-                </td>
-                <td className="px-6 py-3.5 text-[13px] text-foreground">{r.product}</td>
-                <td className="px-6 py-3.5 text-[13px] tabular-nums text-muted-foreground">{r.size}</td>
-                <td className="px-6 py-3.5">
-                  <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-medium ${badgeCls(r.statusColor)}`}>
-                    {r.status}
+                <n.icon className="h-4 w-4 shrink-0" />
+                <span className="truncate">{n.label}</span>
+                {n.badge && (
+                  <span className="ml-auto rounded-full border border-border bg-background px-1.5 py-0.5 text-[9px] font-medium text-muted-foreground">
+                    {n.badge}
                   </span>
-                </td>
-                <td className="px-6 py-3.5 text-[12px]">
-                  {r.posted === "posted" && <span className="inline-flex items-center gap-1 text-success">✅ Postato</span>}
-                  {r.posted === "pending" && <span className="inline-flex items-center gap-1 text-muted-foreground">⏳ In attesa</span>}
-                  {r.posted === "no" && <span className="inline-flex items-center gap-1 text-destructive">❌ Nessun post</span>}
-                  {r.posted === "none" && <span className="text-muted-foreground">—</span>}
-                </td>
-              </tr>
+                )}
+              </div>
             ))}
-          </tbody>
-        </table>
+          </nav>
+          <div className="mt-6 rounded-lg border border-dashed border-border bg-background/60 p-3">
+            <div className="text-[11px] font-medium text-foreground">Beta workspace</div>
+            <div className="mt-1 text-[10.5px] leading-snug text-muted-foreground">
+              Maison Noir · Piano beta
+            </div>
+          </div>
+        </aside>
+
+        {/* Main content */}
+        <div className="min-w-0">
+          {/* Mobile nav pills */}
+          <div className="flex gap-1.5 overflow-x-auto border-b border-border bg-surface/50 px-4 py-2 md:hidden">
+            {navItems.map((n) => (
+              <span
+                key={n.label}
+                className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-2.5 py-1 text-[11px] ${
+                  n.active
+                    ? "border-primary/30 bg-primary/10 text-primary font-medium"
+                    : "border-border bg-background text-muted-foreground"
+                }`}
+              >
+                <n.icon className="h-3 w-3" />
+                {n.label}
+              </span>
+            ))}
+          </div>
+
+          {/* Page header */}
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4 border-b border-border px-6 py-5 sm:flex sm:items-center sm:justify-between">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2.5">
+                <h3 className="truncate text-[17px] font-semibold tracking-tight">Panoramica</h3>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-success/20 bg-success/10 px-2 py-0.5 text-[11px] font-medium text-success">
+                  <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-success" />
+                  Live
+                </span>
+              </div>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Summer Creator Seeding · 250 inviti · Attiva dal 12 giugno
+              </p>
+            </div>
+            <button className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-border bg-background px-3 py-2 text-xs font-medium transition-colors hover:bg-surface">
+              <Copy className="h-3.5 w-3.5" />
+              Copia link regalo
+            </button>
+          </div>
+
+          {/* Stats */}
+          <div className="grid gap-px border-b border-border bg-border sm:grid-cols-3">
+            <StatCard label="Inviti mandati" value="250" sub="Ultimi 30 giorni" />
+            <StatCard label="Regali riscattati" value="187" sub="74,8% di riscatto" subColor="success" />
+            <StatCard label="Completamento indirizzo" value="94%" sub="+12% vs. manuale" subColor="success" />
+          </div>
+
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[620px] text-sm">
+              <thead>
+                <tr className="border-b border-border bg-surface/50 text-[11px] uppercase tracking-wider text-muted-foreground">
+                  <th className="px-6 py-3 text-left font-medium">Creator</th>
+                  <th className="px-6 py-3 text-left font-medium">Prodotto</th>
+                  <th className="px-6 py-3 text-left font-medium">Taglia</th>
+                  <th className="px-6 py-3 text-left font-medium">Stato</th>
+                  <th className="px-6 py-3 text-left font-medium">Postato</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rows.map((r, i) => (
+                  <tr
+                    key={i}
+                    className="border-b border-border last:border-0 transition-colors hover:bg-surface/60"
+                  >
+                    <td className="px-6 py-3.5">
+                      <div className="flex items-center gap-2.5">
+                        <div className="grid h-7 w-7 place-items-center rounded-full bg-gradient-to-br from-primary/60 to-primary text-[11px] font-semibold text-primary-foreground">
+                          {r.name[0]}
+                        </div>
+                        <div>
+                          <div className="text-[13px] font-medium leading-tight">{r.name}</div>
+                          <div className="text-[11px] text-muted-foreground">{r.handle}</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-6 py-3.5 text-[13px] text-foreground">{r.product}</td>
+                    <td className="px-6 py-3.5 text-[13px] tabular-nums text-muted-foreground">{r.size}</td>
+                    <td className="px-6 py-3.5">
+                      <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-medium ${badgeCls(r.statusColor)}`}>
+                        {r.status}
+                      </span>
+                    </td>
+                    <td className="px-6 py-3.5 text-[12px]">
+                      {r.posted === "posted" && <span className="inline-flex items-center gap-1 text-success">✅ Postato</span>}
+                      {r.posted === "pending" && <span className="inline-flex items-center gap-1 text-muted-foreground">⏳ In attesa</span>}
+                      {r.posted === "no" && <span className="inline-flex items-center gap-1 text-destructive">❌ Nessun post</span>}
+                      {r.posted === "none" && <span className="text-muted-foreground">—</span>}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );
