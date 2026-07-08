@@ -528,7 +528,7 @@ function ProblemaSection() {
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 Ogni campagna costruisce uno storico condiviso: chi completa, chi posta, chi ricambia.
-                Come le recensioni per i negozi, ma per i creator — così sai a chi vale la pena spedire.
+                Come le recensioni per i negozi, ma per i creator. Così sai a chi vale la pena spedire.
               </p>
             </div>
           </div>
@@ -1260,7 +1260,7 @@ function Footer() {
           </div>
         </div>
         <div className="mt-10 border-t border-border pt-6 text-xs text-muted-foreground">
-          © {new Date().getFullYear()} OneGiftLink. Made in Italy.
+          © {new Date().getFullYear()} onegiftlink. Made in Italy.
         </div>
       </div>
     </footer>
