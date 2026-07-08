@@ -84,7 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Trasforma ogni campagna di creator gifting in un checkout privato. Link brandizzato, dati puliti per la spedizione, dashboard per tracciare chi ricambia con un post.",
       },
-      { property: "og:title", content: "OneGiftLink — Creator gifting per brand DTC" },
+      { property: "og:title", content: "OneGiftLink - Creator gifting per brand DTC" },
       {
         property: "og:description",
         content:
