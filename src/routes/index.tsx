@@ -94,7 +94,7 @@ function Hero() {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-balance text-lg leading-relaxed text-muted-foreground">
             Trasforma ogni campagna di influencer gifting in un semplice checkout. Mandi un link privato,
-            il creator sceglie prodotto, taglia e indirizzo di spedizione da solo. Niente più DM su
+            il creator sceglie prodotto, taglia e indirizzo di spedizione da solo. Niente più DM persi su
             Instagram. Niente più fogli Excel.
           </p>
 
@@ -111,7 +111,7 @@ function Hero() {
               className="inline-flex h-11 items-center gap-2 rounded-lg border border-border bg-card px-5 text-sm font-medium text-foreground transition-colors hover:bg-surface"
             >
               <Play className="h-3.5 w-3.5" />
-              Guarda come funziona
+              Scopri come funziona
             </a>
           </div>
 
@@ -471,7 +471,7 @@ function ComeFunziona() {
 function PerchePlatform() {
   const cards = [
     { icon: Sparkles, title: "Matching assistito dall'AI", desc: "Prodotto, catalogo e indirizzo vengono validati e abbinati in automatico. Le regole si adattano al tuo catalogo e alla logica della campagna. Non un generico form builder." },
-    { icon: Truck, title: "Dati pronti per la spedizione", desc: "Gli ordini escono già puliti, con le taglie giuste e gli indirizzi validati. Pronti per il tuo magazzino, senza export manuali né copia-incolla.", note: "In beta l'integrazione diretta con Shopify è assistita dal team; l'auto-sync completo arriva subito dopo." },
+    { icon: Truck, title: "Dati pronti per la spedizione", desc: "Gli ordini escono già puliti, con le taglie giuste e gli indirizzi validati. Pronti per il tuo magazzino, senza export manuali né copia-incolla.", 
     { icon: ShieldCheck, title: "Privacy by design", desc: "I dati del creator sono cifrati e condivisi solo con il tuo brand per la spedizione. Indirizzi validati e richieste di cancellazione onorate all'istante. Conforme al GDPR." },
   ];
   return (
@@ -484,7 +484,7 @@ function PerchePlatform() {
           </h2>
           <p className="mt-4 text-balance text-muted-foreground">
             Abbiamo costruito qualcosa che collega il tuo brand, il tuo store e ogni creator in un
-            unico flusso privato — e ti dice cosa succede dopo la spedizione.
+            unico flusso privato. E ti dice cosa succede dopo la spedizione.
           </p>
         </div>
         <div className="mx-auto mt-14 grid max-w-5xl gap-4 md:grid-cols-3">
@@ -524,7 +524,7 @@ function DashboardSection() {
           </h2>
           <p className="mt-4 text-balance text-muted-foreground">
             Non un software complesso. Una dashboard elegante per tenere traccia di inviti,
-            riscatti, spedizioni — e di chi ricambia con un post.
+            riscatti, spedizioni e di chi ricambia con un post.
           </p>
         </div>
 
@@ -779,17 +779,17 @@ function BetaSection() {
       <div className="container-page py-24 md:py-32">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
           <div>
-            <SectionEyebrow>Private beta · Solo 5 posti</SectionEyebrow>
+            <SectionEyebrow>Private Beta · Posti limitati</SectionEyebrow>
             <h2 className="mt-5 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
               Apriamo OneGiftLink a 5 brand selezionati per la prima beta.
             </h2>
             <p className="mt-4 text-balance text-muted-foreground">
-              Lavora direttamente con il team fondatore. Dai forma alla roadmap. Lancia la tua
-              prossima campagna di seeding in una frazione del tempo.
+              Lavora direttamente con il team fondatore. Lancia la tua
+              prossima campagna di seeding in una frazione del tempo e aumenta la tua conversione con un processo semplicissimo.
             </p>
             <ul className="mt-8 space-y-3">
               {[
-                "Gratis durante la beta",
+                "Gratis durante la fase Beta",
                 "Setup assistito incluso",
                 "Canale di feedback diretto col team e supporto 24/7",
               ].map((b) => (
@@ -811,8 +811,8 @@ function BetaSection() {
                 </div>
                 <h3 className="mt-5 text-xl font-semibold tracking-tight">Candidatura ricevuta.</h3>
                 <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-                  Ti scriviamo entro lunedì prossimo. Nel frattempo, prepara la lista dei prossimi
-                  creator da regalare.
+                  Ti scriviamo entro 2 giorni lavorativi. Nel frattempo, prepara la lista dei prossimi
+                  creators!
                 </p>
               </div>
             ) : (
@@ -846,7 +846,7 @@ function BetaSection() {
                   <ArrowRight className="h-4 w-4" />
                 </button>
                 <p className="pt-1 text-center text-[11px] text-muted-foreground">
-                  Ci vogliono 30 secondi. Selezione a scorrimento, ogni lunedì. Niente spam — solo
+                  Ci vogliono 30 secondi. Selezione a scorrimento. Niente spam: solo
                   aggiornamenti sul prodotto.
                 </p>
               </form>
