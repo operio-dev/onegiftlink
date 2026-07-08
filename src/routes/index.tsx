@@ -110,7 +110,7 @@ function Hero() {
             <SectionEyebrow>Pensato per Growth Marketers e Founders</SectionEyebrow>
             <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-foreground md:text-6xl md:leading-[1.05]">
               Basta perdere ore a gestire i{" "}
-              <span className="inline-block bg-gradient-to-r from-primary to-[oklch(0.65_0.2_255)] bg-clip-text pr-[0.08em] text-transparent">
+              <span className="inline-block bg-gradient-to-r from-primary to-[oklch(0.65_0.2_255)] bg-clip-text pb-[0.12em] pr-[0.08em] text-transparent">
                 regali ai creator
               </span>
               .
