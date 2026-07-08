@@ -86,8 +86,8 @@ function Hero() {
   ];
   const kpis = [
     { value: "14h", label: "risparmiate a settimana" },
-    { value: "94%", label: "indirizzi completi" },
-    { value: "0", label: "righe di Excel" },
+    { value: "19,4M", label: "views totali dai post" },
+    { value: "+38%", label: "post in più grazie ai follow-up" },
   ];
   return (
     <section id="top" className="relative overflow-hidden border-b border-border">
@@ -138,7 +138,7 @@ function Hero() {
             {funnel.map((f, i) => (
               <div key={i} className="flex justify-end">
                 <div
-                  className={`${f.w} rounded-2xl bg-primary/10 px-6 py-4 transition-all`}
+                  className={`${f.w} rounded-2xl bg-gradient-to-r from-primary/15 to-primary/[0.07] px-6 py-4 shadow-[0_2px_12px_-4px_oklch(0.55_0.2_255/0.25)] ring-1 ring-inset ring-primary/10 transition-all`}
                 >
                   <div className="flex items-baseline gap-3">
                     <span className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
@@ -152,16 +152,16 @@ function Hero() {
               </div>
             ))}
 
-            <div className="grid grid-cols-3 gap-3 pt-1">
+            <div className="grid grid-cols-3 gap-3 pt-2">
               {kpis.map((k, i) => (
                 <div
                   key={i}
-                  className="rounded-2xl bg-primary px-4 py-5 text-primary-foreground"
+                  className="rounded-2xl bg-gradient-to-br from-[oklch(0.62_0.21_255)] to-[oklch(0.5_0.22_262)] px-4 py-5 text-white shadow-[0_8px_24px_-8px_oklch(0.55_0.2_255/0.5)]"
                 >
-                  <div className="text-2xl font-bold tracking-tight md:text-3xl">
+                  <div className="text-2xl font-bold tracking-tight md:text-[28px]">
                     {k.value}
                   </div>
-                  <div className="mt-1 text-xs font-medium leading-tight opacity-90">
+                  <div className="mt-1.5 text-[11px] font-medium leading-tight text-white/85">
                     {k.label}
                   </div>
                 </div>
@@ -179,9 +179,12 @@ function Hero() {
                 </span>{" "}
                 . In automatico.
               </p>
-           </div>
-        </div>
-        </div>
+            </div>
+
+            <p className="pt-1 text-center text-xs text-muted-foreground lg:text-left">
+              Dati aggregati da una campagna reale di seeding. I risultati possono variare.
+            </p>
+          </div>
 
         {/* Split screen mockup */}
         <div className="mx-auto mt-16 grid max-w-5xl gap-6 md:mt-20 md:grid-cols-2 md:gap-8 animate-fade-in-soft">
